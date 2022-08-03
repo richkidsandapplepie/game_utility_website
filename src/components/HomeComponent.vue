@@ -1,7 +1,6 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h1>{{test}}</h1>
+  <div class="main">
+   
   
   </div>
 </template>
@@ -12,7 +11,7 @@ import {
 } from "vuex";
 
 export default {
-  name: "HelloWorld",
+  name: "HomeComponent",
   props: {
     msg: String,
   },
