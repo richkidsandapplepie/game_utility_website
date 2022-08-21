@@ -17,20 +17,21 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    addPlayer(state, player) {
+    addPlayerMutation
+      (state, player) {
       state.players.push(player);
     },
-    removePlayer(state, selectedPlayers) {
+    removePlayerMutation(state, selectedPlayers) {
       state.players = state.players.filter(player => !selectedPlayers.includes(player));
 
     }
   },
   actions: {
-    addSinglePlayer({ commit }, player) {
-      commit('addPlayer', player);
+    addPlayerAction({ commit }, player) {
+      commit('addPlayerMutation', player);
     },
-    removePlayer({ commit }, selectedPlayers) {
-      commit('removePlayer', selectedPlayers);
+    removePlayerAction({ commit }, selectedPlayers) {
+      commit('removePlayerMutation', selectedPlayers);
     }
   },
   modules: {},

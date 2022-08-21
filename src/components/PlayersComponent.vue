@@ -52,7 +52,7 @@ export default {
   }),
   methods: {
     ...mapActions([
-      'removePlayer'
+      'removePlayerAction'
       // ...
     ]),
     goBack() {
@@ -62,7 +62,7 @@ export default {
     },
     onClickRemovePlayer() {
       // call store action to remove player/s
-      this.removePlayer(this.selectedPlayers);
+      this.removePlayerAction(this.selectedPlayers);
       // Reset checkboxes.
       this.selectedPlayers = [];
     }

@@ -51,13 +51,13 @@ export default {
 
   methods: {
     ...mapActions([
-      'addSinglePlayer'
+      'addPlayerAction'
       // ...
     ]),
     // Adds single player.
     onClickAddPlayer() {
       if (this.player) {
-        this.addSinglePlayer({ name: this.player, points: 0 });
+        this.addPlayerAction({ name: this.player, points: 0 });
         this.show = false;
       }
 
