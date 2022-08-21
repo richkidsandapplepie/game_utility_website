@@ -64,12 +64,29 @@ export default {
   }),
   methods: {
     ...mapActions([
-      'removePlayerAction'
+      'removePlayerAction',
+      'addPointToPlayerAction'
       // ...
     ]),
     goBack() {
       this.$router.push('/');
     },
+    add(player) {
+      console.log(player);
+      let pObj = {
+        playerName: player.name,
+        points: 1,
+      }
+      this.addPointToPlayerAction(pObj);
+    },
+    minus(player) {
+      console.log(player);
+      let pObj = {
+        playerName: player.name,
+        points: -1,
+      }
+      this.addPointToPlayerAction(pObj);
+    }
   }
 };
 </script>
