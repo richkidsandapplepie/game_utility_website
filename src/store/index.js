@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     test: "test",
-    players: []
+    players: [{ name: "Jade", points: 0 }, { name: "Richard", points: 0 }],
   },
   getters: {
     test(state) {
@@ -16,7 +16,22 @@ export default new Vuex.Store({
       return state.players;
     }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addPlayer(state, player) {
+      state.players.push(player);
+    },
+    removePlayer(state, selectedPlayers) {
+      state.players = state.players.filter(player => !selectedPlayers.includes(player));
+
+    }
+  },
+  actions: {
+    addSinglePlayer({ commit }, player) {
+      commit('addPlayer', player);
+    },
+    removePlayer({ commit }, selectedPlayers) {
+      commit('removePlayer', selectedPlayers);
+    }
+  },
   modules: {},
 });
