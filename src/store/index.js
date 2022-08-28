@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     test: "test",
     players: [{ name: "Jade", points: 0 }, { name: "Richard", points: 0 }],
+    diceGroups: []
   },
   getters: {
     test(state) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     players(state) {
       return state.players;
+    },
+    diceGroups(state) {
+      return state.diceGroups;
     }
   },
   mutations: {
@@ -35,6 +39,38 @@ export default new Vuex.Store({
           player.points += point;
         }
       });
+    },
+
+    // Dice Group Mutations
+    addDiceGroupMutation(state) {
+      state.diceGroups.push({numSides: 6, numDice: 1});
+    },
+    removeDiceGroupMutation(state, i) {
+      if (i > -1 && i < state.diceGroups.length) {
+        state.diceGroups.splice(i, 1);
+      }
+    },
+    incrementSidesDiceGroupMutation(state, i) {
+      if (i > -1 && i < state.diceGroups.length) {
+        state.diceGroups[i].numSides++;
+      }
+    },
+    decrementSidesDiceGroupMutation(state, i) {
+      if (i > -1 && i < state.diceGroups.length) {
+        // prevent less than 2 sides
+        state.diceGroups[i].numSides = Math.max(2, state.diceGroups[i].numSides - 1);
+      }
+    },
+    incrementNumDiceGroupMutation(state, i) {
+      if (i > -1 && i < state.diceGroups.length) {
+        state.diceGroups[i].numDice++;
+      }
+    },
+    decrementNumDiceGroupMutation(state, i) {
+      if (i > -1 && i < state.diceGroups.length) {
+        // prevent less than 1 dice
+        state.diceGroups[i].numDice = Math.max(1, state.diceGroups[i].numDice - 1);
+      }
     }
   },
   actions: {
@@ -46,6 +82,24 @@ export default new Vuex.Store({
     },
     addPointToPlayerAction({ commit }, obj) {
       commit('addPointToPlayerMutation', obj);
+    },
+    addDiceGroup({ commit }) {
+      commit('addDiceGroupMutation');
+    },
+    removeDiceGroup({ commit }, i) {
+      commit('removeDiceGroupMutation', i);
+    },
+    incrementSidesDiceGroup({ commit }, i) {
+      commit('incrementSidesDiceGroupMutation', i);
+    },
+    decrementSidesDiceGroup({ commit }, i) {
+      commit('decrementSidesDiceGroupMutation', i);
+    },
+    incrementNumDiceGroup({ commit }, i) {
+      commit('incrementNumDiceGroupMutation', i);
+    },
+    decrementNumDiceGroup({ commit }, i) {
+      commit('decrementNumDiceGroupMutation', i);
     }
   },
   modules: {},
