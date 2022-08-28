@@ -6,12 +6,8 @@
           mdi-arrow-left
         </v-icon>
       </v-btn>
-
-
     </v-toolbar>
-
     <div class="card">
-
       <v-data-table class=" table elevation-20" :headers="headers" :items="players" max-width="500" disable-pagination
         hide-default-footer single-select item-key="name" mobile-breakpoint="0">
 
@@ -32,21 +28,20 @@
             </v-icon>
           </v-btn>
         </template>
-
       </v-data-table>
-
     </div>
-    <AddPlayerForm v-model="showAddPlayerForm" />
-
+    <EditPoints v-model="showEditPoints" :player="selectedPlayer" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import EditPoints from './EditPoints.vue';
 export default {
   name: 'Players',
 
   components: {
+    EditPoints
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -61,6 +56,8 @@ export default {
       { text: 'points', value: 'points' },
       { text: 'actions', value: 'actions' },
     ],
+    showEditPoints: false,
+    selectedPlayer: {},
   }),
   methods: {
     ...mapActions([
@@ -86,6 +83,10 @@ export default {
         points: -1,
       }
       this.addPointToPlayerAction(pObj);
+    },
+    edit(player) {
+      this.selectedPlayer = player;
+      this.showEditPoints = true;
     }
   }
 };
