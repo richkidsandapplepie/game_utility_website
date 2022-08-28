@@ -7,6 +7,9 @@
       <v-row>
         <v-btn class="btn" rounded elevation="10" large @click="route('points_ffa')">Points FFA</v-btn>
       </v-row>
+      <v-row>
+        <v-btn class="btn" rounded elevation="10" large @click="route('dice')">Roll Dice!</v-btn>
+      </v-row>
     </div>
   </v-app>
 

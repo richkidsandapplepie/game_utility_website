@@ -5,6 +5,7 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 import PlayersComponent from './components/PlayersComponent';
 import PointsComponent from './components/PointsComponent';
+import DiceComponent from './components/DiceComponent';
 import Home from './components/Home';
 
 Vue.config.productionTip = false;
@@ -14,6 +15,7 @@ const routes = [
   { path: '/', component: Home },
   { path: '/players', component: PlayersComponent },
   { path: '/points_ffa', component: PointsComponent },
+  { path: '/dice', component: DiceComponent },
 ];
 
 const router = new VueRouter({
