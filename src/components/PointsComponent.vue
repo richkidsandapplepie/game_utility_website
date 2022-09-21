@@ -1,36 +1,37 @@
 <template>
-  <div>
-    <v-toolbar flat>
-      <v-btn class="mx-2" icon elevation="5" @click="goBack">
-        <v-icon>
-          mdi-arrow-left
-        </v-icon>
-      </v-btn>
-    </v-toolbar>
+  <div class="main">
+
     <div class="card">
-      <v-data-table class=" table elevation-20" :headers="headers" :items="players" max-width="500" disable-pagination
+      <div>
+        <v-btn class="btn" @click="goBack">
+          <v-icon>
+            mdi-arrow-left
+          </v-icon>
+        </v-btn>
+      </div>
+      <v-data-table class="table" :headers="headers" :items="players" max-width="500" disable-pagination
         hide-default-footer single-select item-key="name" mobile-breakpoint="0">
 
         <template v-slot:[`item.actions`]="{ item }">
-          <v-btn class="mx-2" icon elevation="2" @click="add(item)">
+          <v-btn icon @click="add(item)">
             <v-icon>
               mdi-plus
             </v-icon>
           </v-btn>
-          <v-btn class="mx-2" icon elevation="2" @click="minus(item)">
+          <v-btn icon @click="minus(item)">
             <v-icon>
               mdi-minus
             </v-icon>
           </v-btn>
-          <v-btn class="mx-2" icon elevation="2" @click="edit(item)">
+          <v-btn icon @click="edit(item)">
             <v-icon>
               mdi-pencil
             </v-icon>
           </v-btn>
         </template>
       </v-data-table>
+      <EditPoints v-model="showEditPoints" :player="selectedPlayer" />
     </div>
-    <EditPoints v-model="showEditPoints" :player="selectedPlayer" />
   </div>
 </template>
 
@@ -52,9 +53,9 @@ export default {
   },
   data: () => ({
     headers: [
-      { text: 'name', value: 'name' },
-      { text: 'points', value: 'points' },
-      { text: 'actions', value: 'actions' },
+      { text: 'Player', value: 'name' },
+      { text: 'Points', value: 'points' },
+      { text: 'Actions', value: 'actions' },
     ],
     showEditPoints: false,
     selectedPlayer: {},
@@ -101,5 +102,9 @@ export default {
 
 .table {
   margin-top: 30px;
+}
+
+.btn {
+  background-color: white;
 }
 </style>

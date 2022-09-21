@@ -1,14 +1,17 @@
 <template>
   <v-app>
     <div class="container">
-      <v-row>
-        <v-btn class="btn" rounded elevation="10" large @click="route('players')">Players</v-btn>
+      <v-row class="row">
+        <v-btn class="btn" large @click="route('players')">Players</v-btn>
       </v-row>
-      <v-row>
-        <v-btn class="btn" rounded elevation="10" large @click="route('points_ffa')">Points FFA</v-btn>
+      <v-row class="row">
+        <v-btn class="btn" large @click="route('points_ffa')">Points FFA</v-btn>
       </v-row>
-      <v-row>
-        <v-btn class="btn" rounded elevation="10" large @click="route('dice')">Roll Dice!</v-btn>
+      <v-row class="row">
+        <v-btn class="btn" large @click="route('dice')">Roll Dice!</v-btn>
+      </v-row>
+      <v-row class="row">
+        <v-btn class="btn" large @click="route('team_generator')">Random Team Generator</v-btn>
       </v-row>
     </div>
   </v-app>
@@ -40,7 +43,10 @@ export default {
   vertical-align: middle;
   margin-top: 30px;
 }
+
 .btn {
-  margin: 10px;
+  margin: auto;
+  margin-top: 15px;
+  width: 280px;
 }
 </style>

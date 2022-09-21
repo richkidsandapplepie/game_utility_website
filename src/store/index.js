@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     test: "test",
     players: [{ name: "Jade", points: 0 }, { name: "Richard", points: 0 }],
-    diceGroups: []
+    diceGroups: [],
+    teams: [],
   },
   getters: {
     test(state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     diceGroups(state) {
       return state.diceGroups;
+    },
+    teams(state) {
+      return state.teams;
     }
   },
   mutations: {

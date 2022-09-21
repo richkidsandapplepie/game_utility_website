@@ -1,27 +1,21 @@
 <template>
-  <div>
-    <v-toolbar flat>
-      <v-btn class="mx-2" icon elevation="5" @click="goBack">
-        <v-icon>
-          mdi-arrow-left
-        </v-icon>
-      </v-btn>
-      <v-btn class="mx-2" icon elevation="5" @click="onClickAddPlayerForm" @click.stop="showAddPlayerForm = true">
-        <v-icon>
-          mdi-plus
-        </v-icon>
-      </v-btn>
-      <v-btn class="mx-2" icon elevation="5" @click="onClickRemovePlayer">
-        <v-icon>
-          mdi-minus
-        </v-icon>
-      </v-btn>
-    </v-toolbar>
-
+  <div class="main">
     <div class="card">
-
-      <v-data-table class=" table elevation-20" v-model="selectedPlayers" show-select :headers="headers"
-        :items="players" max-width="500" disable-pagination hide-default-footer hide-default-header item-key="name" mobile-breakpoint="0">
+      <div>
+        <v-btn class="btn" @click="goBack">
+          <v-icon>
+            mdi-arrow-left
+          </v-icon>
+        </v-btn>
+      </div>
+      <v-text-field class="text-field" v-model="player" label="Name" solo color="white"></v-text-field>
+      <div class="btn-group">
+        <v-btn class="btn" @click="onClickAddPlayer">Add</v-btn>
+        <v-btn class="remove-btn" @click="onClickRemovePlayer">Remove</v-btn>
+      </div>
+      <v-data-table class=" table elevation-5" v-model="selectedPlayers" show-select :headers="headers" :items="players"
+        max-width="500" disable-pagination hide-default-footer hide-default-header item-key="name"
+        mobile-breakpoint="0">
       </v-data-table>
     </div>
     <AddPlayerForm v-model="showAddPlayerForm" />
@@ -49,10 +43,12 @@ export default {
     showAddPlayerForm: false,
     headers: [{ text: 'name', value: 'name' }],
     selectedPlayers: [],
+    player: '',
   }),
   methods: {
     ...mapActions([
-      'removePlayerAction'
+      'removePlayerAction',
+      'addPlayerAction'
       // ...
     ]),
     goBack() {
@@ -65,6 +61,15 @@ export default {
       this.removePlayerAction(this.selectedPlayers);
       // Reset checkboxes.
       this.selectedPlayers = [];
+    },
+    onClickAddPlayer() {
+      if (this.player) {
+        this.addPlayerAction({ name: this.player, points: 0 });
+      }
+
+      // Clear text field.
+      this.player = '';
+
     }
   }
 };
@@ -79,5 +84,19 @@ export default {
 
 .table {
   margin-top: 30px;
+}
+
+.btn {
+  margin-right: 10px;
+  background-color: white;
+}
+
+.text-field {
+  margin-top: 20px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between; 
 }
 </style>
